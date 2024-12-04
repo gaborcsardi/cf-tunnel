@@ -39,7 +39,7 @@ async function download() {
       await exec.exec("tar -xzf " + path.join(workingDir, "./cf." + ext));
       await io.mv("cloudflared", path.join(workingDir, "cloudflared"));
     } else if (os.platform() == "linux") {
-      await io.mv(img, path.join(workingDir, "./cloudflared"));
+      await io.cp(img, path.join(workingDir, "./cloudflared"));
       await exec.exec("sh", [], { input: "chmod +x " +  path.join(workingDir, "./cloudflared")});
     } else {
       await io.mv(img, path.join(workingDir, "./cloudflared.exe"));
